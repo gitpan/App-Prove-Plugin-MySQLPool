@@ -1,6 +1,5 @@
 .gitignore
 Changes
-inc/DBI.pm
 inc/File/Temp.pm
 inc/Module/Install.pm
 inc/Module/Install/AuthorTests.pm
@@ -15,6 +14,7 @@ inc/Module/Install/Win32.pm
 inc/Module/Install/WriteAll.pm
 inc/POSIX.pm
 inc/Test/More.pm
+inc/Test/Requires.pm
 lib/App/Prove/Plugin/MySQLPool.pm
 lib/Test/mysqld/Pool.pm
 Makefile.PL

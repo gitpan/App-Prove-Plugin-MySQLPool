@@ -5,7 +5,7 @@ use File::Temp;
 use POSIX::AtFork;
 use Test::mysqld::Pool;
 
-our $VERSION = '0.02';
+our $VERSION = '0.03';
 
 sub load {
     my ($class, $prove) = @_;
@@ -25,8 +25,8 @@ sub load {
             push( @INC, 'lib' )
                 if $lib;
 
-            eval "require $preparer"
-                or die "$@"; ## no critic
+            eval "require $preparer" ## no critic
+                or die "$@";
 
             $preparer->prepare( $mysqld );
         } ) : ()),

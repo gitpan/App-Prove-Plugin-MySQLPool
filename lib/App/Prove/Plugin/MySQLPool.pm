@@ -5,13 +5,14 @@ use File::Temp;
 use POSIX::AtFork;
 use Test::mysqld::Pool;
 
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 
 sub load {
     my ($class, $prove) = @_;
     my @args     = @{ $prove->{args} };
     my $preparer = $args[ 0 ];
     my $jobs     = $prove->{ app_prove }->jobs || 1;
+    my $lib      = $prove->{ app_prove }->lib;
 
     my $share_file = File::Temp->new(); # deleted when DESTROYed
 
@@ -20,7 +21,13 @@ sub load {
         share_file => $share_file->filename,
         ($preparer ? ( preparer => sub {
             my ($mysqld) = @_;
-            eval "require $preparer"; ## no critic
+
+            push( @INC, 'lib' )
+                if $lib;
+
+            eval "require $preparer"
+                or die "$@"; ## no critic
+
             $preparer->prepare( $mysqld );
         } ) : ()),
     );

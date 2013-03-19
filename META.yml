@@ -3,7 +3,10 @@ abstract: 'pool of Test::mysqld-s reused while testing'
 author:
   - 'Masakazu Ohtsuka <o.masakazu@gmail.com>'
 build_requires:
+  DBD::mysql: 0
+  DBI: 0
   ExtUtils::MakeMaker: 6.36
+  Test::Requires: 0
 configure_requires:
   ExtUtils::MakeMaker: 6.36
 distribution_type: module
@@ -26,7 +29,8 @@ requires:
   Mouse: 0
   POSIX::AtFork: 0
   Test::mysqld: 0
+  parent: 0
 resources:
   license: http://dev.perl.org/licenses/
   repository: git://github.com/mash/App-Prove-Plugin-MySQLPool.git
-version: 0.03
+version: 0.04
